@@ -4,12 +4,12 @@ import Eccezioni.*;
 import java.util.HashMap;
 
 
-public class GestioneProgrammi {
+public class GestioneProgrammi extends UnicastRemoteObject implements GestioneProgrammi {
 
     public static final int MAX_GIORNI = 3;
     private HashMap<Integer, Programma> programMap;
 
-    public GestioneProgrammi(){
+    public GestioneProgrammi() throws java.rmi.RemoteException {
         this.programMap = new HashMap<>();
 
         for(int i = 1; i <= MAX_GIORNI; i++){
@@ -25,7 +25,7 @@ public class GestioneProgrammi {
 
     public void synchronized enroll(String speakerName, int day, int session) throws
             SpeakerAlreadyPresentException, DayNotPresentException,
-            SessionNotPresentException, FullSessionException,  {
+            SessionNotPresentException, FullSessionException  {
 
         // se il giorno non è corretto
         if (day < 1 || day > 3){

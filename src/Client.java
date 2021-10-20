@@ -6,7 +6,7 @@ public class Client{
 
 
         //Parse stringa
-        String prova = "Ciao, Prova, Come; 1, 2,3; Pippo, Pluto, Paperino;";
+        String prova = "Ciao, Prova, Come; 1, 2, 3; Pippo, Pluto, Paperino;";
 
         String[] array = prova.split(";");
 
