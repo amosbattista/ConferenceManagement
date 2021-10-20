@@ -4,4 +4,8 @@ public class Intervento {
     public Intervento(String speakerName) {
         this.speakerName = speakerName;
     }
+
+    public String getSpeakerName() {
+        return speakerName;
+    }
 }
