@@ -14,22 +14,11 @@ public class Client {
 
     public static void main(String args[]){
 
-//
-//        //Parse stringa
-//        String prova = "Ciao, Prova, Come; 1, 2, 3; Pippo, Pluto, Paperino;";
-//
-//        String[] array = prova.split(";");
-//
-//        for (String s : array){
-//            String [] speak = s.split(",");
-//            System.out.println("Speakers:");
-//            for(String t : speak){
-//                System.out.print(t.trim()+"\t");
-//
-//            }
-//            System.out.println();
-//
-//        }
+
+        //Parse stringa
+        String prova = "Ciao, Prova, Come; 1, 2, 3; Pippo, Pluto, Paperino;";
+
+
 
 
         // lookup
@@ -39,12 +28,10 @@ public class Client {
             GestioneProgrammi stub = (GestioneProgrammi) reg.lookup("rmi://localhost/GestioneProgrammiServer");
             logger.info("... Trovato! Ora invoco il metodo...");
 
-            stub.enroll("pippo9",1,1);
-            String str = stub.getDayProgram(1);
-            System.out.println(str);
-
-
-
+            stub.enroll("pippo55",1,7);
+            String dayProgram = stub.getDayProgram(1);
+            String parsedDayProgram[][] = parseDayProgram(dayProgram);
+            printDayProgram(parsedDayProgram);
 
         } catch (AccessException e) {
             e.printStackTrace();
@@ -62,6 +49,30 @@ public class Client {
             e.printStackTrace();
         } catch (FullSessionException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static String[][] parseDayProgram(String dayProgram){
+        String[] sessioni = dayProgram.split(";", -1);
+        int numSessioni = sessioni.length;
+
+        String interventi[][] = new String[numSessioni][];
+        for (int i = 0; i < numSessioni; i++){
+            interventi[i] = sessioni[i].split(",", -1);
+        }
+        return interventi;
+    }
+
+    private static void printDayProgram(String parsedDayProgram[][]){
+        for(int i = 0; i < parsedDayProgram.length; i++){
+            System.out.println("SESSIONE " + (i+1));
+            for (int j = 0; j < parsedDayProgram[i].length; j++) {
+                if (parsedDayProgram[i][j] == "")
+                    System.out.println("Nessun intervento.");
+                else
+                    System.out.println("Intervento #" + (j + 1) + ": " + parsedDayProgram[i][j]);
+            }
+
         }
     }
 }
