@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Eccezioni.*;
+import com.company.eccezioni.*;
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;

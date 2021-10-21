@@ -1,10 +1,9 @@
 package com.company;
 
-import com.company.Eccezioni.*;
+import com.company.eccezioni.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class GestioneProgrammiImpl extends UnicastRemoteObject implements GestioneProgrammi{
@@ -20,7 +19,7 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
         }
     }
 
-    public synchronized String getDayProgram(int day) throws DayNotPresentException {
+    public synchronized String getDayProgram(int day) throws DayNotPresentException, RemoteException {
 
         if(day < 1 || day > 3){
             throw new DayNotPresentException("Giorno non corretto");
@@ -34,7 +33,7 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
 
     public synchronized void enroll(String speakerName, int day, int session) throws
             SpeakerAlreadyPresentException, DayNotPresentException,
-            SessionNotPresentException, FullSessionException, FullDayException, RemoteException {
+            SessionNotPresentException, FullSessionException, RemoteException {
 
         // se il giorno non è corretto
         if (day < 1 || day > 3){
@@ -43,7 +42,7 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
 
         // se la sessione non è corretta
         if (session < 1 || session > 12){
-            throw new FullDayException("Sesssione non corretta");
+            throw new SessionNotPresentException("Sesssione non corretta");
         }
 
         // addIntervento lancia

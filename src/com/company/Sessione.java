@@ -1,12 +1,9 @@
 package com.company;
 
 
-import com.company.Eccezioni.FullSessionException;
-import com.company.Eccezioni.SpeakerAlreadyPresentException;
+import com.company.eccezioni.FullSessionException;
+import com.company.eccezioni.SpeakerAlreadyPresentException;
 
-import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -19,6 +16,7 @@ public class Sessione  {
     public Sessione(int id) {
         this.id = id;
         this.interventi = new LinkedHashMap<String, Intervento>();
+        sizeInterventi = 0;
     }
 
     public void addIntervento(Intervento intervento) throws

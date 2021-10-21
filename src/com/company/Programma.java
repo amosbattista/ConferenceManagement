@@ -1,10 +1,7 @@
 package com.company;
 
-import com.company.Eccezioni.FullDayException;
+import com.company.eccezioni.FullDayException;
 
-import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Eccezioni.*;
+import com.company.eccezioni.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

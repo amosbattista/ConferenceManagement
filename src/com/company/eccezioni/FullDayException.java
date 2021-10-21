@@ -1,4 +1,4 @@
-package com.company.Eccezioni;
+package com.company.eccezioni;
 
 public class FullDayException extends Exception{
 
