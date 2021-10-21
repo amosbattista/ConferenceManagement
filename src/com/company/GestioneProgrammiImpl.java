@@ -2,16 +2,18 @@ package com.company;
 
 import com.company.Eccezioni.*;
 
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class GestioneProgrammiImpl extends UnicastRemoteObject implements GestioneProgrammi{
 
     public static final int MAX_GIORNI = 3;
-    private HashMap<Integer, Programma> programMap;
+    private LinkedHashMap<Integer, Programma> programMap; //mappa integer=giorno,
 
     public GestioneProgrammiImpl() throws java.rmi.RemoteException {
-        this.programMap = new HashMap<>();
+        this.programMap = new LinkedHashMap<Integer, Programma>();
 
         for(int i = 1; i <= MAX_GIORNI; i++){
             programMap.put(i, new Programma(i));
@@ -20,22 +22,28 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
 
     public synchronized String getDayProgram(int day) throws DayNotPresentException {
 
-        return "ciao"; //stringa formattata , ;
+        if(day < 1 || day > 3){
+            throw new DayNotPresentException("Giorno non corretto");
+        }
+
+        Programma p = programMap.get(day);
+        return p.toString();
+
 
     }
 
-    public synchronized void  enroll(String speakerName, int day, int session) throws
+    public synchronized void enroll(String speakerName, int day, int session) throws
             SpeakerAlreadyPresentException, DayNotPresentException,
-            SessionNotPresentException, FullSessionException, FullDayException {
+            SessionNotPresentException, FullSessionException, FullDayException, RemoteException {
 
         // se il giorno non è corretto
         if (day < 1 || day > 3){
-            throw new DayNotPresentException("errore");
+            throw new DayNotPresentException("Giorno non corretto");
         }
 
         // se la sessione non è corretta
         if (session < 1 || session > 12){
-            throw new FullDayException("errore");
+            throw new FullDayException("Sesssione non corretta");
         }
 
         // addIntervento lancia
@@ -46,4 +54,5 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
         Sessione sessione = programma.getSessione(session);
         sessione.addIntervento(intervento);
     }
+
 }

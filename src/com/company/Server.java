@@ -16,10 +16,19 @@ public class Server {
             GestioneProgrammiImpl obj = new GestioneProgrammiImpl();
             logger.info("... ora ne effettuo il rebind...");
             reg.rebind("rmi://localhost/GestioneProgrammiServer", obj);
+//
+//
+//            logger.info("... Pronto!");
+//            System.err.println("Server ready");
 
 
-            logger.info("... Pronto!");
-            System.err.println("Server ready");
+
+
+
+
+
+
+
         } catch (Exception e){
             e.printStackTrace();
         }

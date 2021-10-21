@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Eccezioni.*;
+
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -12,22 +14,22 @@ public class Client {
 
     public static void main(String args[]){
 
-
-        //Parse stringa
-        String prova = "Ciao, Prova, Come; 1, 2, 3; Pippo, Pluto, Paperino;";
-
-        String[] array = prova.split(";");
-
-        for (String s : array){
-            String [] speak = s.split(",");
-            System.out.println("Speakers:");
-            for(String t : speak){
-                System.out.print(t.trim()+"\t");
-
-            }
-            System.out.println();
-
-        }
+//
+//        //Parse stringa
+//        String prova = "Ciao, Prova, Come; 1, 2, 3; Pippo, Pluto, Paperino;";
+//
+//        String[] array = prova.split(";");
+//
+//        for (String s : array){
+//            String [] speak = s.split(",");
+//            System.out.println("Speakers:");
+//            for(String t : speak){
+//                System.out.print(t.trim()+"\t");
+//
+//            }
+//            System.out.println();
+//
+//        }
 
 
         // lookup
@@ -36,8 +38,12 @@ public class Client {
             Registry reg = LocateRegistry.getRegistry("localhost", 1099);
             GestioneProgrammi stub = (GestioneProgrammi) reg.lookup("rmi://localhost/GestioneProgrammiServer");
             logger.info("... Trovato! Ora invoco il metodo...");
-            String response = stub.toString();
-            System.out.println("Hello: " + response);
+
+            stub.enroll("pippo9",1,1);
+            String str = stub.getDayProgram(1);
+            System.out.println(str);
+
+
 
 
         } catch (AccessException e) {
@@ -45,6 +51,16 @@ public class Client {
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (DayNotPresentException e) {
+            e.printStackTrace();
+        } catch (FullDayException e) {
+            e.printStackTrace();
+        } catch (SpeakerAlreadyPresentException e) {
+            e.printStackTrace();
+        } catch (SessionNotPresentException e) {
+            e.printStackTrace();
+        } catch (FullSessionException e) {
             e.printStackTrace();
         }
     }
