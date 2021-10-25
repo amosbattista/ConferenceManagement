@@ -1,12 +1,9 @@
 package com.company;
 
-import java.rmi.Remote;
-import java.rmi.server.UnicastRemoteObject;
-
 public class Intervento {
     private String speakerName;
 
-    public Intervento(String speakerName) throws java.rmi.RemoteException {
+    public Intervento(String speakerName){
         this.speakerName = speakerName;
     }
 

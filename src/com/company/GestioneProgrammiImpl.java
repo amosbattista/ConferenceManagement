@@ -12,7 +12,7 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
     private LinkedHashMap<Integer, Programma> programMap; //mappa integer=giorno,
 
     public GestioneProgrammiImpl() throws java.rmi.RemoteException {
-        this.programMap = new LinkedHashMap<Integer, Programma>();
+        this.programMap = new LinkedHashMap<>();
 
         for(int i = 1; i <= MAX_GIORNI; i++){
             programMap.put(i, new Programma(i));

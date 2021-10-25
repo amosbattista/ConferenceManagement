@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class Server {
     static Logger logger= Logger.getLogger("global");
 
-    public static void main(String args[]){
+    public static void main(String[] args){
 
         try {
             logger.info("Creo l’oggetto remoto...");
@@ -18,16 +18,8 @@ public class Server {
             reg.rebind("rmi://localhost/GestioneProgrammiServer", obj);
 //
 //
-//            logger.info("... Pronto!");
-//            System.err.println("Server ready");
-
-
-
-
-
-
-
-
+            logger.info("... Pronto!");
+            System.err.println("Server ready");
 
         } catch (Exception e){
             e.printStackTrace();

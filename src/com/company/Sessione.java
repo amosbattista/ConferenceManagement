@@ -15,7 +15,7 @@ public class Sessione  {
 
     public Sessione(int id) {
         this.id = id;
-        this.interventi = new LinkedHashMap<String, Intervento>();
+        this.interventi = new LinkedHashMap<>();
         sizeInterventi = 0;
     }
 
@@ -44,13 +44,13 @@ public class Sessione  {
     public String toString() {
 
 
-        String str = "";
+        StringBuilder str = new StringBuilder();
 
         for (Map.Entry<String, Intervento> entry : interventi.entrySet()) {
-            str = str+entry.getValue().toString()+",";
+            str.append(entry.getValue().toString()).append(",");
         }
 
 
-        return str.length()>0 ? str.substring(0,str.length()-1) : str;
+        return str.length()>0 ? str.substring(0,str.length()-1) : str.toString();
     }
 }
