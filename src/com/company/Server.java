@@ -5,6 +5,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Logger;
 
+/**
+ * Rappresenta la classe per avviare il server. Istanzia l'oggetto remoto della classe GestioneProgrammiImpl, lo
+ * registra tramite il servizio di Registry opportunamente definito sulla porta 1099 e si mette in attesa
+ * di chiamate remote da parte dei client.
+ */
 public class Server {
     static Logger logger= Logger.getLogger("global");
 
@@ -16,8 +21,7 @@ public class Server {
             GestioneProgrammiImpl obj = new GestioneProgrammiImpl();
             logger.info("... ora ne effettuo il rebind...");
             reg.rebind("rmi://localhost/GestioneProgrammiServer", obj);
-//
-//
+
             logger.info("... Pronto!");
             System.err.println("Server ready");
 

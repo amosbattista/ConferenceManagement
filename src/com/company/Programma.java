@@ -3,7 +3,16 @@ package com.company;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Rappresenta il programma giornaliero della conferenza, costituito da dodici sessioni.
+ */
+
 public class Programma {
+    /**
+     * @param MAX_SESSIONI è il numero massimo di sessioni possibili in un giorno
+     * @param sessioni è una mappa che associa all'id della sessione una sessione
+     * @param day è un intero che rappresenta il giorno in cui avviene la conferenza
+     */
     private static final int MAX_SESSIONI = 12;
     private LinkedHashMap<Integer,Sessione> sessioni;
     private int day;
@@ -13,7 +22,7 @@ public class Programma {
         this.day = day;
 
         for (int i = 1; i <= MAX_SESSIONI; i++){
-            sessioni.put(i, new Sessione(i));
+            sessioni.put(i, new Sessione(i)); //istanzia le 12 sessioni
         }
     }
 
@@ -22,6 +31,9 @@ public class Programma {
     }
 
     @Override
+    /**
+     * Stampa tutte le sessioni nel programma del giorno separandoli da punto e virgola.
+     */
     public String toString() {
 
         StringBuilder str = new StringBuilder();
@@ -31,6 +43,6 @@ public class Programma {
         }
 
 
-        return str.length()>0 ? str.substring(0,str.length()-1) : str.toString();
+        return  str.substring(0,str.length()-1);
     }
 }
