@@ -2,9 +2,11 @@ package com.company;
 
 import com.company.eccezioni.*;
 
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedHashMap;
+
 
 /**
  * Rappresenta la classe remota che gestisce i programmi giornalieri della conferenza. Si occupa di aggiungere nuovi
@@ -58,10 +60,11 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
      * @throws DayNotPresentException se il giorno fornito non è nell'intervallo [1,3]
      * @throws SessionNotPresentException se la sessione fornita non è nell'intervallo [1,12]
      * @throws FullSessionException se la sessione è piena
+     * @throws SpeakerIsNotAlphaNumericException se il nome dello speaker non è alfanumerico
      */
     public synchronized void enroll(String speakerName, int day, int session) throws
             SpeakerAlreadyPresentException, DayNotPresentException,
-            SessionNotPresentException, FullSessionException, RemoteException {
+            SessionNotPresentException, FullSessionException, RemoteException, SpeakerIsNotAlphaNumericException {
 
         // se il giorno non è corretto
         if (day < 1 || day > 3){
@@ -70,7 +73,13 @@ public class GestioneProgrammiImpl extends UnicastRemoteObject implements Gestio
 
         // se la sessione non è corretta
         if (session < 1 || session > 12){
-            throw new SessionNotPresentException("Sesssione non corretta");
+            throw new SessionNotPresentException("Sessione non corretta");
+        }
+
+        if(!speakerName.matches("^[a-zA-Z0-9_]+$")){
+            throw new SpeakerIsNotAlphaNumericException("Nome utente non valido!");
+
+
         }
 
         // addIntervento lancia

@@ -14,7 +14,7 @@ public interface GestioneProgrammi extends Remote {
 
     void enroll(String speakerName, int day, int session) throws SpeakerAlreadyPresentException,
             DayNotPresentException,
-            SessionNotPresentException, FullSessionException, RemoteException;
+            SessionNotPresentException, FullSessionException, RemoteException, SpeakerIsNotAlphaNumericException;
 
 
 }
